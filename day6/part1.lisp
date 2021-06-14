@@ -5,7 +5,13 @@
 
 (ql:quickload "cl-ppcre")
 
-(defvar *chunks* (cl-ppcre:split (format nil "~%~%") *raw-input*))
+(defvar *group* (cl-ppcre:split (format nil "~%~%") *raw-input*))
 
-(loop for c in *chunks*
-      collect (remove #\linefeed c))
+(defvar *votes* (loop for g in *group*
+			  collect (sort (loop for x across (remove #\linefeed g) collect x) #'char>)))
+
+(defvar *distinct-votes* (loop for vote in *votes*
+			collect (remove-duplicates vote)))
+
+(format t "~A" (apply #'+ (loop for v in *distinct-votes*
+      collect (length v))))
