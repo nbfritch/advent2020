@@ -13,7 +13,7 @@ end
 inputs.each_index do |idx|
     comparisons = inputs[idx..idx+24]
     test_value = inputs[idx+25]
-    if !is_sum_of(inputs, test_value)
+    if !is_sum_of(comparisons, test_value)
         puts "#{test_value} BROKE THE RULE!!!!"
         exit(0)
     end

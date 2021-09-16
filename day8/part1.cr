@@ -46,7 +46,7 @@ debug = true
 
 loop do
     to_execute = instructions[program_counter]
-    puts "#{program_counter}: #{raw_instructions[program_counter]}" if debug
+    #puts "#{program_counter}: #{raw_instructions[program_counter]}" if debug
 
     visited_addresses.push(program_counter)
 
@@ -64,6 +64,7 @@ loop do
 
     if visited_addresses.includes?(new_program_counter)
         puts "Next address #{new_program_counter} has been visited previously, Accumulator: #{accumulator}"
+        break
     end
 
     program_counter = new_program_counter
